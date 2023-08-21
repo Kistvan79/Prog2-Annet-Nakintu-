@@ -14,4 +14,5 @@ try:
 
 except ValueError:
     print("Please input 2 integers from 0 to 1 000 000")
+print("Input 2 integers from 0 to 1 000 000")
    
