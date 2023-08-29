@@ -1,4 +1,4 @@
-#Rövarspråk
+###Rövarspråk
 
 # user = input("")
 # rövar = ""
@@ -12,8 +12,25 @@
 
 # print(rövar)
 
-#Andra uppgiften
+###Andra uppgiften
 
-user = input("")
-reverse = user[-1:len(user)]
-print(reverse)
+# user = input("")
+# reverse = user[::-1]
+# print("This is reverse: "+reverse)
+
+###Tredje uppgiften
+
+# d = {"Sweden":"Stockholm", "Finland":"Helsinki", "Norge":"Oslo","Danmark":"Copenhagen"}
+# print(d["Sweden"])
+# d.update({"USA":"Washington DC"})
+# d.pop("Danmark")
+# print(d)
+
+###Fjärde uppgiften
+
+# frukt = {"Äpple", "Päron", "Banan"}
+# exotiskish = {"Ananas", "Kiwi", "Päron"}
+
+# frukt.union(exotiskish)
+# print(frukt)
+#I ett set, can det ej finnas 2 av samma element!
