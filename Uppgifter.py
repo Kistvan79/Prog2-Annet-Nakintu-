@@ -134,25 +134,26 @@
 
 class Bil:
     __maxHastighet = 0
-    antalbilar = 0
-    def __init__(self):
-         
+    def __init__(self, maxHastighet):
+         self.__maxHastighet = maxHastighet 
     def setMaxhastighet(self, maxHastighet):
             self.__maxHastighet = maxHastighet
-
-        
+            return maxHastighet
+                        
     def getMaxhastighet(self):
         return self.__maxHastighet
 
     @staticmethod
     def milestokm(miles):
         return 1.6093*miles
+    
 
-bil = Bil()
+
+bil = Bil(21)
 
 print(bil.getMaxhastighet())
-print(bil.milestokm(21))
-print(bil.setMaxhastighet(21))
+print(bil.milestokm(31))
+print(bil.setMaxhastighet(31))
 
 
 
