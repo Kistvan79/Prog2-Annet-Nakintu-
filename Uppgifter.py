@@ -109,23 +109,50 @@
 # elev.presenter()
 
 # print(elev.glad)
-import datetime
 
-class Account:
+# import datetime BRB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
 
-    def __init__(self, name, email, password):
-        self.name = name
-        self.email = email
-        self.password = password
+# class Account:
+
+#     def __init__(self, name, email, password):
+#         self.name = name
+#         self.email = email
+#         self.password = password
     
-    def loggin_time(self):
-        self.current_time = datetime.datetime.now()
+#     def loggin_time(self):
+#         self.current_time = datetime.datetime.now()
+#         print(self.current_time)
 
-while True:
-    print("Please input your user name")
-    user = input()
-    user_account = Account("DoctorMcstuffin", "mcstuffinmcloving@gmail,com", 1111)
 
+# print("Please input your User name, Email, Password in that order")
+# user_details = input("")
+# name, email, password = user_details.split()
+# user_account = Account(name, email, password)
+
+# print(user_account.__dict__)
+# user_account.loggin_time()
+
+class Bil:
+    __maxHastighet = 0
+    antalbilar = 0
+    def __init__(self):
+         
+    def setMaxhastighet(self, maxHastighet):
+            self.__maxHastighet = maxHastighet
+
+        
+    def getMaxhastighet(self):
+        return self.__maxHastighet
+
+    @staticmethod
+    def milestokm(miles):
+        return 1.6093*miles
+
+bil = Bil()
+
+print(bil.getMaxhastighet())
+print(bil.milestokm(21))
+print(bil.setMaxhastighet(21))
 
 
 
