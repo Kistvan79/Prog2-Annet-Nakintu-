@@ -110,7 +110,8 @@
 
 # print(elev.glad)
 
-# import datetime BRB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+###GPT UPPGIFT
+# import datetime
 
 # class Account:
 
@@ -119,10 +120,13 @@
 #         self.email = email
 #         self.password = password
     
-#     def loggin_time(self):
-#         self.current_time = datetime.datetime.now()
-#         print(self.current_time)
+#     def current_time(self):
+#         self.time = datetime.datetime.now()
+#         print(self.time)
 
+#     def details_verification(self):
+#         if any(char in "@" for char in email):
+#             print("Cooolt")
 
 # print("Please input your User name, Email, Password in that order")
 # user_details = input("")
@@ -130,30 +134,53 @@
 # user_account = Account(name, email, password)
 
 # print(user_account.__dict__)
-# user_account.loggin_time()
+# user_account.current_time()
+# user_account.details_verification()
 
-class Bil:
-    __maxHastighet = 0
-    def __init__(self, maxHastighet):
-         self.__maxHastighet = maxHastighet 
-    def setMaxhastighet(self, maxHastighet):
-            self.__maxHastighet = maxHastighet
-            return maxHastighet
+###Uppgift clar!
+# class Bil:
+#     __maxHastighet = 0
+#     def __init__(self, maxHastighet):
+#          self.__maxHastighet = maxHastighet 
+#     def setMaxhastighet(self, maxHastighet):
+#             self.__maxHastighet = maxHastighet
+#             return maxHastighet
                         
-    def getMaxhastighet(self):
-        return self.__maxHastighet
+#     def getMaxhastighet(self):
+#         return self.__maxHastighet
 
-    @staticmethod
-    def milestokm(miles):
-        return 1.6093*miles
+#     @staticmethod
+#     def milestokm(miles):
+#         return 1.6093*miles
     
 
 
-bil = Bil(21)
+# bil = Bil(21)
 
-print(bil.getMaxhastighet())
-print(bil.milestokm(31))
-print(bil.setMaxhastighet(31))
+# print(bil.getMaxhastighet())
+# print(bil.milestokm(31))
+# print(bil.setMaxhastighet(31))
+
+## 13 september 2023
+# def add_this(*input):
+#     summa = 0
+#     for tal in input:
+#         summa += tal
+#     return summa
+
+# print(add_this(1,2,3))
+# print(add_this(1,2,3,4,5))
+##Vad har jag lärt mig?: Return statements är viktiga ifall man vill få ut något.
+
+# def food(edible, vegan=False):
+#     if edible == "mjölk" and vegan == True:
+#         return "sojamjölk"
+#     else:
+#         return edible
+# print(food("mjölk"))
+# print(food("mjölk", True))
+## Vad har jag lärt mig?: Sojamjölk kommer aldrig att vara god.
+
 
 
 
