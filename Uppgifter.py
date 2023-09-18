@@ -183,14 +183,14 @@
 
 ##Inför prov
 
-line = input()
-a, b = line.split()
-a = int(a)
-b = int(b)
-if a > b:
-    a, b = b, a
-    print(b-a)
-else:
-    print(b-a)
+# line = input()
+# a, b = line.split()
+# a = int(a)
+# b = int(b)
+# if a > b:
+#     a, b = b, a
+#     print(b-a)
+# else:
+#     print(b-a)
 
 
