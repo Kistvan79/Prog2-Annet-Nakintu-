@@ -181,8 +181,16 @@
 # print(food("mjölk", True))
 ## Vad har jag lärt mig?: Sojamjölk kommer aldrig att vara god.
 
+##Inför prov
 
-
-
+line = input()
+a, b = line.split()
+a = int(a)
+b = int(b)
+if a > b:
+    a, b = b, a
+    print(b-a)
+else:
+    print(b-a)
 
 
