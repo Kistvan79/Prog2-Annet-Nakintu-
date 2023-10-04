@@ -181,16 +181,86 @@
 # print(food("mjölk", True))
 ## Vad har jag lärt mig?: Sojamjölk kommer aldrig att vara god.
 
-##Inför prov
-
 # line = input()
-# a, b = line.split()
+# a, b = line.split(" ")
 # a = int(a)
 # b = int(b)
-# if a > b:
-#     a, b = b, a
-#     print(b-a)
+
+# if a < b:
+#     difference = b - a
 # else:
-#     print(b-a)
+#     difference = a - b
+
+# print(difference)
+
+#Programmering 2 övnings uppgifter
+
+### Uppgift 2
+
+# def double(i): ## Är en method som intar ett värde
+#     return i*2 ## Returnerar värdet gånger 2
+# print(double(4)) ## Ger 8
+# print(double("åtta")) ## Krashar, det går ej att använda matematiska statements med strings och integers
+# print(double([1, 2])) ## Krashar, man ställer in en lista inte en variable
+
+#stringen upprepas
+#listan upprepas och värderna lägs till i den gamla listan.
+
+### Uppgift 3
+
+#Det går ej att dela något med noll
+#Därför printas något gick fel och Nu är undan...
+# x = 10
+# try:
+#     x/0
+#     print("Allt gick bra.")
+# except:
+#     print("Något gick fel.")
+# finally:
+#     print("Nu är undantagshanteringen klar.")
+
+### Uppgift 4
+
+#det är en float datatyp, skriver ut medianen
+# def funk(*args):
+# 	return sum(args)/len(args)
+# print(funk(2, 4, 6, 8))
+# print(type(funk(2,4,6,8)))
+
+### Uppgift 5
+
+# greet("Martin") ## Hej Martin
+# greet("Martin", "eng") ## Hello Martin
+# greet("Martin", "fin") ##¯\_(ツ)_/
+# def greet(name, lang="swe"):
+#     if lang == "swe":
+#         print(f"Hej {name}")
+#     elif lang == "eng":
+#         print(f"Hello {name}")
+#     elif lang == "fr":
+#         print(f"Bonjour {name}")
+#     else:
+#         print(f"¯\_(ツ)_/")
+
+# greet("Martin")
+# greet("Martin", "eng")
+# greet("Martin", "fin")
+
+### Uppgift 1 TBLR
+
+## Kattis A New Alphabet not done at all
+
+# input = input()
+# newalpha = ["@","8","(","|)","3","#","6","[-]","|","_|","|<","1","[]\/[]","[]\[]","0","|D","(,)","|Z","$","']['","|_|","\/","\/\/","}{","`/","2"]
+# oldalpha = "abcdefghijklmnopqrstuvwxyz"
+# output = ""
+
+# for i in input:
+#     if i in oldalpha:
+#         print(oldalpha[len(input)-1])
+
+
+
+
 
 
