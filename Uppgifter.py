@@ -259,8 +259,42 @@
 #     if i in oldalpha:
 #         print(oldalpha[len(input)-1])
 
+# line = input()
+# split = list(map(int, line.split()))
+# count = 0
+# print(split[1])
+# for num in split:
+#     if num > split[count]: ## How in the tarnation is it out of range???
+#         res = num - split[count]
+#         count += 1
+#     else:
+#         res = split[count] - num
+#         count += 1
+# print(res)
 
+## Echo Uppgift work in progress
+# n = int(input())
+# # shout = input()
+# # splitshout = shout.split()
+# count = 1
+# # echo = ""
+# # for string in splitshout:
+# #     if n % count == 1 or 0:
+# #         echo += string 
+# #         echo += " "
+# #         count += 1
+# #     else:
+# #         print("That didnt work")
 
+# # print(echo)
 
-
-
+# # while True:
+# #     res = n- count % 2
+# #     if res == 4:
+# #         count += 1
+# #         print(res)
+# #     else:
+# #         print(res)
+# #         count += 1
+# #     if count == 5:
+# #         break
