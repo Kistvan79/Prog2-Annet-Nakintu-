@@ -4,7 +4,6 @@ window = Tk()
 rock = Button(window, text= "rock", command=lambda: rockpaperscissors("rock"))
 paper = Button(window, text= "paper", command=lambda: rockpaperscissors("paper"))
 scissor = Button(window, text= "scissor", command=lambda: rockpaperscissors("scissor"))
-gif = 
 def rockpaperscissors(user_choice):
     choices = ["rock", "paper", "scissors"]
     computer_choice = random.choice(choices)
