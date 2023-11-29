@@ -1,8 +1,12 @@
+#Attack on Djuren
+
 class Djur:
-    def __init__(self, namn):
-        self.namn = namn
+    def __init__(self, namn, hp, styrka):
+        self.nam = namn
+        self.hp = hp
+        self.str = styrka
     
-    def ät(self):
+    def attack(self):
         print("Djuret äter giftig karamel")
     
     def sov(self):
