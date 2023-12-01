@@ -1,27 +1,27 @@
-def minimum_days_to_print_statues(n):
-    current_printers = 1 
-    current_day = 0  
-    statues_printed = 0  
+import tkinter as tk
+class Moving:
+    def __init__(self, hp):
+        self.hp = hp
 
-    while statues_printed < n:
-        
-        statues_printed_today = current_printers
 
-        statues_printed += statues_printed_today
-        current_day += 1
+def move_rectangleD():
+    canvas.move(rectangle, 5, 0)
+    window.after(100, move_rectangleD)
 
-        
-        current_printers += statues_printed_today
+def move_rectangleU():
+    canvas.move(rectangle,0,5)
+    window.after()
 
-        if statues_printed < n:
-            current_printers += 1
 
-    return current_day
+    
 
-# Input parameter
-n = 5  # Number of statues you want to print
+window = tk.Tk()
+window.geometry("500x500")
 
-# Calculate the minimum number of days needed to print at least "n" statues
-min_days = minimum_days_to_print_statues(n)
+canvas = tk.Canvas(window, width=400, height=400, bg="white")
+rectangle = canvas.create_rectangle(10, 10, 20, 20, fill="red")
+canvas.pack(pady=20)
 
-print(f"Minimum number of days to print at least {n} statues: {min_days} days")
+move_rectangle()
+
+window.mainloop()
