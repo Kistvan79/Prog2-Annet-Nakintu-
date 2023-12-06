@@ -1,7 +1,11 @@
+#Duck hunt game
+
 from tkinter import *
+from PIL import ImageTk, Image
+
 
 root = Tk()
-root.geometry("500x500")
+root.geometry("1920x1080")
 
 canvas_width = 500
 canvas_height = 500
@@ -10,17 +14,19 @@ rect_width = 10
 rect_height = 10 
 
 
-center_x = canvas_width / 2
-center_y = canvas_height / 2
-
-
-x = center_x - (rect_width / 2)
-y = center_y - (rect_height / 2)
+x = 0
+y = 0
 
 mycanvas = Canvas(root, width=canvas_width, height=canvas_height)
 mycanvas.pack(pady=20)
 
-myrec = mycanvas.create_rectangle(x, y, x + rect_width, y + rect_height, fill="red")
+# myrec = mycanvas.create_rectangle(x, y, x + rect_width, y + rect_height, fill="red")
+
+sub = Image.open("subduck.png")
+resized = sub.resize((200,300), Image.ANTIALIAS)
+new_sub = ImageTk.PhotoImage(resized)
+mysub = Label(root, image=new_sub, height=300, width=200)
+mysub.pack(pady=20)
 
 def right():
     global x, move_horizontal
@@ -63,12 +69,4 @@ def up():
         move_vertical = "down"
         down()
 
-
-class Duckgo:
-    pass
-
-
-
-down()
-right()
 root.mainloop()
