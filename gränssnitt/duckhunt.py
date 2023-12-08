@@ -1,79 +1,57 @@
-# #Duck hunt game
+# # #Duck hunt game
 from tkinter import *
 from PIL import ImageTk, Image
+import random
 
-root = Tk()
-root.geometry("500x500")
+class Duck:
+    def __init__(self, canvas, speed):
+        self.canvas = canvas
+        self.speed = speed
+        self.image = canvas.create_image(300,150, image = resized_sub)  # Change this to your duck image
+        self.vector = self.generate_random_vector()
+        self.move_duck()
 
-x = 0
-y = 0
+        canvas.tag_bind(self.image, "<Button-1>", self.on_click)
 
-mycanvas = Canvas(root, width=300, height=300, bg="white")
-mycanvas.pack(pady=20)
+    def generate_random_vector(self):
+        return [random.uniform(-1, 1), random.uniform(-1, 1)]
 
-# Paths
-path = "C:\\Users\\Elev\\Documents\\Programmering2\\Prog2[Annet Nakintu]\\gränssnitt\\subduck.png"
+    def move_duck(self):
+        self.canvas.move(self.image, self.vector[0] * self.speed, self.vector[1] * self.speed)
+        pos = self.canvas.coords(self.image)
+        if pos[0] <= 0 or pos[0] >= self.canvas.winfo_width():
+            self.vector[0] *= -1
+        if pos[1] <= 0 or pos[1] >= self.canvas.winfo_height():
+            self.vector[1] *= -1
+        self.canvas.after(50, self.move_duck)  # Adjust the speed of the movement
 
-#Open and Resize image
-sub = Image.open(path)
-resize = sub.resize((100,100), Image.Resampling.LANCZOS)
+    def on_click(self, event):
+        x, y = event.x, event.y
+        closest_item = self.canvas.find_closest(x, y)
+        if closest_item and closest_item[0] == self.image:
+            self.canvas.delete(self.image)
+        else:
+            print("Miss")
+
+
+def create_ducks(canvas, num_ducks):
+    ducks = []
+    for _ in range(num_ducks):
+        speed = random.randint(1, 3)
+        duck = Duck(canvas, speed)
+        ducks.append(duck)
+    return ducks
+
+# # Paths
+path_to_subduck = "C:\\Users\\Elev\\Documents\\Programmering2\\Prog2[Annet Nakintu]\\gränssnitt\\subduck.png"
+
+root =Tk()
+canvas = Canvas(root, width=600, height=400, bg='sky blue')
+sub = Image.open(path_to_subduck)
+resize = sub.resize((80,80), Image.Resampling.LANCZOS)
 resized_sub = ImageTk.PhotoImage(resize)
-subduck = mycanvas.create_image(0,0, anchor = NW, image=resized_sub)
+ducks = create_ducks(canvas, 5)  # Change the number of ducks as needed
 
-def right():
-    global x, move_horizontal
-    if x <= 200:
-        x += 10
-        mycanvas.move(subduck, 10, 0)
-        root.after(100,right)
-    else:
-        move_horizontal = "left"
-        left()
-
-def left():
-    global x, move_horizontal
-    if x >= 0 and move_horizontal == "left":
-        x -= 10
-        mycanvas.move(subduck, -10, 0)
-        root.after(100, left)
-    else:
-        move_horizontal = "right"
-        right()
-
-
-def down():
-    global y, move_vertical
-    if y <= 200:
-        y += 10
-        mycanvas.move(subduck, 0, 10)
-        root.after(100, down)
-    else:
-        move_vertical = "up"
-        up()
-
-def up():
-    global y, move_vertical
-    if y >= 0 and move_vertical == "up":
-        y -= 10
-        mycanvas.move(subduck, 0, -10)
-        root.after(100, up)
-    else:
-        move_vertical = "down"
-        down()
-    
-def on_click(event):
-    global subduck
-    x, y = event.x, event.y
-    closest_item = mycanvas.find_closest(x, y)
-    if closest_item and closest_item[0] == subduck:
-        mycanvas.delete(subduck)
-    else:
-        print("Miss")
-
-
-#Pack and call functions
-down()
-right()
-
-mycanvas.tag_bind(subduck, "<Button-1>", on_click)
+root.title("Duck Game")
+canvas.pack()
 root.mainloop()
