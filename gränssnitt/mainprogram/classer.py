@@ -1,40 +1,48 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
-path_normal_duck = "C:\\Users\\Player 1\\Documents\\Prog2\\Prog2-Annet-Nakintu-\\gränssnitt\\subduck.png"
-path_subaru_duck = "C:\\Users\\Player 1\\Documents\\Prog2\\Prog2-Annet-Nakintu-\\gränssnitt\\subduck.png"
-
 
 class NormalDuck:
     
-    def __init__(self, canvas, x,y, xvelocity, yvelocity):
+    def __init__(self, canvas, x,y, xvelocity, yvelocity, image_path):
         self.canvas = canvas
-        duck = Image.open(path_normal_duck)
+        duck = Image.open(image_path)
         resize = duck.resize((80,80), Image.Resampling.LANCZOS)
         self.resized = ImageTk.PhotoImage(resize)
         self.image = canvas.create_image(x,y, image = self.resized)
         self.xvelocity = xvelocity
         self.yvelocity = yvelocity
+        self.canvas.tag_bind(self.image, "<Button-1>", self.on_click)
 
     def move(self):
-        coordinates = self.canvas.coords(self.image)
+        if self.image is not None:
+            coordinates = self.canvas.coords(self.image)
 
-        if (coordinates[0]>=(self.canvas.winfo_width()) or coordinates[0]<0):
-            self.xvelocity = -self.xvelocity
-        if (coordinates[1]>=(self.canvas.winfo_height()) or coordinates[1]<0):
-            self.yvelocity = -self.yvelocity
-        self.canvas.move(self.image,self.xvelocity,self.yvelocity)
+            if coordinates:
+                if (coordinates[0]>=(self.canvas.winfo_width()) or coordinates[0]<0):
+                    self.xvelocity = -self.xvelocity
+
+                if (coordinates[1]>=(self.canvas.winfo_height()) or coordinates[1]<0):
+                    self.yvelocity = -self.yvelocity
+                self.canvas.move(self.image,self.xvelocity,self.yvelocity)
+    
+    def on_click(self, event):
+        x, y = event.x, event.y
+        closest_item = self.canvas.find_closest(x, y)
+        if closest_item and closest_item[0] == self.image:
+            self.canvas.delete(self.image)
+            self.image == None
+
 
 class SubaruDuck(NormalDuck):
-    def __init__(self, canvas, x, y, xvelocity, yvelocity):
-        super().__init__(canvas, x, y, xvelocity, yvelocity)
-        self.canvas = canvas
-        subaru_duck = Image.open(path_subaru_duck)
-        s_resize = subaru_duck.resize((80,80), Image.Resampling.LANCZOS)
-        self.resized_subaru_duck = ImageTk.PhotoImage(s_resize)
-        self.image = canvas.create_image(x,y, image = self.resized_subaru_duck)
-        self.xvelocity = xvelocity
-        self.yvelocity = yvelocity
+    def __init__(self, canvas, x, y, xvelocity, yvelocity, image_path):
+        super().__init__(canvas, x, y, xvelocity, yvelocity, image_path)
+        duck = Image.open(image_path)
+        resize = duck.resize((80,80), Image.Resampling.LANCZOS)
+        self.resized = ImageTk.PhotoImage(resize)
+        self.image = canvas.create_image(x,y, image = self.resized)
+        self.canvas.tag_bind(self.image, "<Button-1>", self.on_click)
+    
 
 
 
