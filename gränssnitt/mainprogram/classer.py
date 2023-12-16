@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from main import create_ducks
 
 
 class NormalDuck:
@@ -32,6 +33,7 @@ class NormalDuck:
         if closest_item and closest_item[0] == self.image:
             self.canvas.delete(self.image)
             self.image == None
+            create_ducks()
 
 
 class SubaruDuck(NormalDuck):
