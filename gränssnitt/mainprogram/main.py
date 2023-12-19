@@ -1,9 +1,11 @@
 #Kortare mer begriplig def för klasser och funktioner, mer smooth också
 
-from tkinter import Tk, Canvas
-# from classer import NormalDuck, SubaruDuck
+from tkinter import *
+from classer import max_time
 from PIL import ImageTk, Image
+import threading
 import random
+import vlc
 import time
 
 class NormalDuck:
@@ -30,16 +32,20 @@ class NormalDuck:
                     self.yvelocity = -self.yvelocity
                 self.canvas.move(self.image,self.xvelocity,self.yvelocity)
     
+    def quack(self):
+        quack = vlc.MediaPlayer("gränssnitt\\sounds\\quacksound.mp3")
+        return quack.play()
+    
     def on_click(self, event):
         x, y = event.x, event.y
         closest_item = self.canvas.find_closest(x, y)
         if closest_item and closest_item[0] == self.image:
+            self.quack()
             self.canvas.delete(self.image)
             ducks.remove(self)
             del self
             create_ducks()
-
-
+        
 class SubaruDuck(NormalDuck):
     def __init__(self, canvas, x, y, xvelocity, yvelocity, image_path):
         super().__init__(canvas, x, y, xvelocity, yvelocity, image_path)
@@ -49,8 +55,10 @@ class SubaruDuck(NormalDuck):
         self.image = canvas.create_image(x,y, image = self.resized)
         self.canvas.tag_bind(self.image, "<Button-1>", self.on_click)
 
-path_normal_duck = "normalduck.png"
-path_subaru_duck = "subduck.png"
+
+        
+PATH_NORMAL_DUCK = "gränssnitt\\photos\\normalduck.png"
+PATH_SUBARU_DUCK = "gränssnitt\\photos\\subduck.png"
 
 
 window = Tk()
@@ -58,7 +66,7 @@ window = Tk()
 WIDTH = 600
 HEIGHT = 400
 
-canvas  = Canvas(window, width= WIDTH, height= HEIGHT, bg="skyblue")
+canvas = Canvas(window, width= WIDTH, height= HEIGHT, bg="skyblue")
 canvas.pack()
 
 ducks = []  # List to hold all ducks
@@ -71,20 +79,19 @@ def create_ducks():
         if total_ducks < max_ducks:
             duck_type = random.choice([NormalDuck, SubaruDuck])
             if duck_type == NormalDuck:
-                duck = NormalDuck(canvas, random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(1, 7), random.randint(1, 7), path_normal_duck)
+                duck = NormalDuck(canvas, random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(1, 7), random.randint(1, 7), PATH_NORMAL_DUCK)
             else:
-                duck = SubaruDuck(canvas, random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(8, 12), random.randint(8, 12), path_subaru_duck)
+                duck = SubaruDuck(canvas, random.randint(0, WIDTH), random.randint(0, HEIGHT), random.randint(8, 12), random.randint(8, 12), PATH_SUBARU_DUCK)
             ducks.append(duck)
 
 
-
-# Initial creation of ducks
 create_ducks()
+daemon_time = threading.Thread(target=max_time, daemon=True)
+daemon_time.start()
 
 
 while True:
     for duck in ducks:
         duck.move()
-        print(len(ducks))
         window.update()
         time.sleep(0.01)
